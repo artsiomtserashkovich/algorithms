@@ -57,6 +57,9 @@ namespace Algorithms.LeetCode.Collections
 
             for(int index = 0, previousOccured = 0; index < symbols.Length; index++)
             {
+                // Two purpose:
+                // 1) check previous occurred of current symbol (symbols[index])
+                // 2) store recent previous occured of previous symbol 
                 previousOccured = Math.Max(
                     occuredLetter[symbols[index]] == 0 ? 0 : occuredLetter[symbols[index]],
                     previousOccured);

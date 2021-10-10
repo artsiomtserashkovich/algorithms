@@ -4,7 +4,19 @@
     {
         public bool HasPathSum(TreeNode root, int targetSum)
         {
-            return true;
+            if(root == null){
+                return false;
+            }
+        
+            if(root.left == null && root.right == null)
+            {
+                return root.val == targetSum;
+            }
+        
+            var left = root.left != null && HasPathSum(root.left, targetSum - root.val);
+            var right = root.right != null && HasPathSum(root.right, targetSum - root.val);
+        
+            return left || right;
         }
         
         public class TreeNode 
