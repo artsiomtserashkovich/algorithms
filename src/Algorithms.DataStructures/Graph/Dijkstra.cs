@@ -22,7 +22,8 @@ namespace Algorithms.DataStructures.Graph
 			// The list of unvisited nodes
 			var unvisited = new List<Node>();
 			// Previous nodes in optimal path from source
-			var previous = new Dictionary<Node, Node> ();
+			
+			//var previous = new Dictionary<Node, Node> ();
 		
 			// The calculated distances, set all to Infinity at start, except the start Node
 			var distances = new Dictionary<Node, int?> ();
@@ -73,7 +74,8 @@ namespace Algorithms.DataStructures.Graph
 					if(distances[neighbor] == null || calculatedDistance < distances[neighbor])
 					{
 						distances[neighbor] = calculatedDistance;
-						previous[neighbor] = current;
+						
+						//previous[neighbor] = current;
 					}
 					
 					// ALSO WE CAN ADD HERE NODE TO UNVISITED LIST!!
