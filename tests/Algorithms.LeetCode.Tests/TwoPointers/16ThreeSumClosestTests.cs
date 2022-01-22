@@ -28,6 +28,10 @@ namespace Algorithms.LeetCode.Tests.TwoPointers
                 new[] { -1, 0, 1, 1, 55 }, 
                 3,
                 2);
+            yield return new TestCaseData(
+                new[] { -4,-7,-2,2,5,-2,1,9,3,9,4,9,-9,-3,7,4,1,0,8,5,-7,-7 }, 
+                29,
+                27);
         }   
     }
 }
