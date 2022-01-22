@@ -40,11 +40,11 @@ namespace Algorithms.LeetCode.TwoPointers
                             new List<int> 
                                 { nums[index], nums[frontIndex], nums[backIndex] });
 
+                        // Because we are looking for distinct 
                         while(frontIndex < backIndex && nums[frontIndex] == nums[frontIndex + 1])
                         {
                             frontIndex ++;
                         }
-                        
                         while(frontIndex < backIndex && nums[backIndex - 1] == nums[backIndex])
                         {
                             backIndex --;

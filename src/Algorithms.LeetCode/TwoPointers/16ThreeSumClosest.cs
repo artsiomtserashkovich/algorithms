@@ -17,11 +17,6 @@ namespace Algorithms.LeetCode.TwoPointers
 
             for (int firstIndex = 0; firstIndex < nums.Length - 2; firstIndex++)
             {
-                if (firstIndex != 0 && nums[firstIndex] == nums[firstIndex + 1])
-                {
-                    continue;
-                }
-                
                 int secondIndex = firstIndex + 1;
                 int thirdIndex = nums.Length - 1;
 
@@ -31,7 +26,7 @@ namespace Algorithms.LeetCode.TwoPointers
                         result,
                         nums[firstIndex] + nums[secondIndex] + nums[thirdIndex],
                         target);
-                    
+
                     if (nums[firstIndex] + nums[secondIndex] + nums[thirdIndex] < target)
                     {
                         secondIndex++;
@@ -43,15 +38,6 @@ namespace Algorithms.LeetCode.TwoPointers
                     else
                     {
                         return target;
-                    }
-                    
-                    while (secondIndex < thirdIndex && nums[secondIndex] == nums[secondIndex + 1])
-                    {
-                        secondIndex++;
-                    }
-                    while (secondIndex < thirdIndex && nums[thirdIndex - 1] == nums[thirdIndex])
-                    {
-                        thirdIndex--;
                     }
                 }
             }
