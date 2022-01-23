@@ -1,0 +1,117 @@
+﻿First PART (1st interviewer)
+
+Input: array of numbers and target sum
+
+Task: : return indexes on 2 numbers in array with target sum
+
+# nums [-5, 3, 2, 5, 9]  target 7
+# target not found return None
+# len(nums) >= 2
+
+#[-5, 3, 2, 5, 9]  -5 9 
+
+#int[] FindNumbers(int[] nums, int target)
+#{
+#
+#}
+
+# TC = 
+def findNumbers(nums: list, target:int) -> tuple:
+	tmp = sorted(nums)
+  left, right = 0, len(nums)-1
+  res = tmp[left] + tmp[right]
+  while left!= right:
+  	if res == target:
+    	return (left, right)
+    elif res < target:
+    	left+=1
+    else:
+    	right-=1
+    res = tmp[left] + tmp[right]
+  return None
+
+# TC = O(n*log(n))
+# MC = O(n)
+
+# TC = O(n) 
+# MC = O(n)
+
+# 1) Create a hashmap with values as list of their indexes : key = element of original array, value would be list of indexes in the order they were found in array.
+# 2) Loop through original array and look for (target - el) inside my hashmap
+# 3) 
+
+# loop over arraay
+# check if new (target-el) is inside our dictionary already. 
+# add el to dictionary and its index
+# loop over return None
+
+def findNumbers(nums: list, target:int) -> tuple:
+	hm = {}
+  for i in range(len(nums)):
+  	if target - nums[i] in hm:
+    	return (hm[nums[i]], i)
+    hm[nums[i]] = i
+  return None
+  
+  
+
+SECOND PART (2nd interviewer)
+
+#You are given an integer n >= 0
+#Sequence is defined by the following formula:
+#f(n) = f([n/2]) if n is even
+#f(n) = f([n/2]) + f([n/2] + 1) if n is odd
+#f(n) = n if n<=1
+
+#return max(f(0), f(1), f(2), ... f(n)) - ?
+[n/2] = 1.5 -> 1 
+
+f(4) = f(2)
+f(3) = f((int)3/2) + f((int)(3/2) + 1) = f(1) + f(2) 
+f(2) = f(1) 
+
+f(1) = 1
+f(0) = 0
+
+result[]
+if (n is even) => result[n - 1]
+
+int GetMax(int n)
+{
+	var results = new int[n];
+  results[0] = 0;
+  results[1] = 1;
+  
+  int max_result = 0;
+  
+  for(int index = 2; index <= n; index ++)
+  {
+  	if(index % 2 == 0)
+    {
+    	var prevIndex = (int) index / 2; [index / 2]
+    	results[index] = results[prevIndex];
+      
+      
+    }
+    else 
+    {
+    	var prevIndex = (int) index / 2; [index / 2]
+    	results[index] = results[prevIndex] + result[prevIndex + 1];
+      
+      max_result = max(max_result, results[prevIndex] + result[prevIndex + 1]) 
+    }
+  }
+  
+  return max
+  
+  // return resuls[n % 2 == 0 ? n-1 : n ];
+}
+
+TC O(n)
+MC O(n)
+
+TEST 1: n == 0
+TEST 2: n == 1
+TEST 3: n is even
+TEST 4: n is odd
+
