@@ -18,8 +18,7 @@
                 l1 = l1?.Next;
                 l2 = l2?.Next;
             }
-
-
+            
             if (carry)
             {
                 current.Next = new ListNode(1);

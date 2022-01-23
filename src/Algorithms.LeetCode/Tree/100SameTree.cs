@@ -16,6 +16,13 @@
         
             return IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
         }
+        
+        public bool IsSameTreeV2(TreeNode p, TreeNode q)
+        {
+            if (p == null & q == null) return true;
+            return p?.val == q?.val && IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
+        }
+        
         public class TreeNode 
         {
             public int val;
