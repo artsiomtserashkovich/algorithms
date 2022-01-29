@@ -1,0 +1,125 @@
+﻿FIRST PART 
+https://leetcode.com/problems/generate-parentheses/
+Input: n - count of parentheses (bracket pairs);
+
+Return array with all possible solutions;
+
+[, 10000]
+n <= 1100
+
+["(())", "()()"]
+
+1. n = 1 ->()
+2. n = 2 -> ()(), (())
+3. n = 3 -> (()()), ((())),  ()()(), (())(), ()(()) !!!
+ n = 4 -> 4 + 5 + 5 -> n
+
+/*
+s = (()), ()()
+cur = (()), ()()
+*/
+vector<string> GetStrings(int n) // O(n^2), sc - O(n)
+{
+  unordered_set<string> s;
+  s.insert('()');
+  for (int i = 2; i <= n; ++i) {
+  	unordered_set<string> cur;
+    for (const auto el: s) {
+    	cur.insert('(' + el + ')');
+      cur.insert(el + '()');
+      cur.insert('()' + el);
+    }
+    s = cur;
+  }
+  return {begin(s), end(s)};
+}
+
+void rec(string state, int n, int open, int close, vector<string>& res) {
+	if ()
+}
+
+vector<string> getstrings(int n) {
+	vector<string> res;
+  string state = "";
+  rec(state, n, 0, 0, res);
+  return res;
+}
+
+
+__
+
+
+
+
+
+SECOND PART
+//https://massivealgorithms.blogspot.com/2016/06/leetcode-366-find-leaves-of-binary-tree.html
+
+-> 
+
+vector<vector<int>> cols.Add()
+
+
+O(n * n);
+
+///
+index = 0 => acc[0] = {4, 5, 3}
+
+index = 1 => acc[1] = { 2 }; 
+
+index = 2 => acc[2] = {1};
+
+////
+
+int[][] GetLeafs(TreeNode root)
+{
+		var result = new int[][];
+    
+    if(root == null)
+    {
+    	return result;
+    }
+    
+    int index = 0;
+
+		while(!DFSRecursion(result, root, index)) 
+    { 
+    	index ++; 
+    }    
+    
+		return result;
+}
+
+
+// true -> remove link to node under execution;
+// false -> 
+bool DFSRecursion(int[][] acc, TreeNode root, int index)
+{
+		if(root.left == null && root.right == null)
+    {
+    	acc[index].Append(root.value);
+      return true;
+    }
+		
+    if(root.left != null)
+    {
+    	var removeLeft = DFSRecursion(acc, root.left, index);
+      if(removeLeft)
+      {
+      	root.left = null;
+      }
+    }
+    
+    if(root.right != null)
+    {
+    	var removeRight = DFSRecursion(acc, root.right, index);
+      if(removeRight)
+      {
+      	root.right = null;
+      }
+    }
+    
+    return false;
+}
+
+O(n * ??)

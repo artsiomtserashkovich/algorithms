@@ -17,6 +17,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithms.Mocks", "Algorithms.Mocks", "{3BFCFC7F-5EFF-4949-AE20-7A3E7C251153}"
 ProjectSection(SolutionItems) = preProject
 	FAANG_MOCK_22_01_2022.txt = FAANG_MOCK_22_01_2022.txt
+	FAANG_MOCK_23_01_2022.txt = FAANG_MOCK_23_01_2022.txt
+	FAANG_MOCK_24_01_2022.txt = FAANG_MOCK_24_01_2022.txt
+	FAANG_MOCK_29_01_2022.txt = FAANG_MOCK_29_01_2022.txt
+	FAANG_MOCK_28_01_2022.txt = FAANG_MOCK_28_01_2022.txt
 EndProjectSection
 EndProject
 Global

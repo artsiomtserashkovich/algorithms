@@ -1,0 +1,113 @@
+﻿https://leetcode.com/problems/valid-anagram/
+
+Input:
+	1) string s
+  2) string t
+  
+Result: true if t is an anagram of s
+
+ bool isanagram(string s, string t){
+ 
+	unordered_map<char, int> map1;
+
+
+		for(int i = 0; i<s.size(); i++){
+    		map1[s[i]]++;
+    }
+    for(int i = 0; i<t.size(); i++){
+    		map1[t[i]]--;
+    }
+    
+    if(map1.size()==0){
+    	return true;
+    }
+ 
+ 		return false;
+ }
+
+
+1) s: AB; t: BA -> TRUE;
+2) s: ABA; t: BA -> FALSE;
+
+1) s: AB; t: BA -> TRUE;
+2) s: ABA; t: BA -> TRUE;
+3) s: AYMAB; t: BA -> TRUE;
+*) s: AYMB; t: BA -> FALSE;
+
+AYMAB
+[AY, YM, MA, AB] -> isanagram()
+
+=====================================================
+
+https://leetcode.com/problems/binary-search/
+
+1) [4, 6, 10], key = 10 ; return -> 2
+2) nums[] -> [0, 1, 2, 5, 6] ; target_val -> 5 ; return -> 3
+3) nums[] -> [0, 1, 2, 5, 6] ; target_val -> 3 ; return -> -1
+4) nums[] -> []; target_val -> not presented
+
+O(log(N))
+
+
+Input: nums: [0, 1, 2, 5, 6]; target: 5
+
+Input: nums: [0, 1]; target: 1
+
+Output: 3
+
+int FindIndex(int[] nums, int target)
+{
+	int left = 0;
+  int right = nums.Length - 1;
+  
+  int result_index = -1;
+  
+  // 1) left = 0; right = 4; mid = 0 + 2 = 2; nums[mid] = 2
+  // 2) left = 2; right = 4; mid = 2 + (4 - 2) / 2 = 3; nums[mid] = 5
+//[0,1]  find = 1
+
+[0, 1, 2, 5, 6]; target: 6
+
+  // 1) left = 0; right = 1; mid = 0; nums[0] = 0
+	// [0,1]  find = 1
+  
+  
+  // 1) left = 0; right = 4; mid = 0 + 2 = 2; nums[mid] = 2
+  // 2) left = 2; right = 4; mid = 2 + (4 - 2) / 2 = 3; nums[3] = 5
+  // 3) left = 3; right = 4;
+	while(left <= rigth)  3<3 -> false
+  {
+  	int mid_index = left + (right - left) /2;
+    
+    if(nums[mid_index] == target_val)
+    {
+    	return mid_index;
+    }
+    
+    if(nums[mid_index] < target_val)
+    {
+    	left = mid_index + 1;
+    }
+    else
+    {
+    	right = mid_index - 1;
+    }
+  }
+  
+  if(nums[right] == target_val)
+  	return right;
+    
+  if(nums[left] == target_val)
+  	return left;
+  
+  return result_index;
+}
+
+
+
+0 1 2 3 4 5 6
+      | 
+      mid_index
+      
+      target 2
+

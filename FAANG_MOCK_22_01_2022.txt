@@ -1,5 +1,5 @@
 ﻿First PART (1st interviewer)
-
+https://leetcode.com/problems/two-sum/
 Input: array of numbers and target sum
 
 Task: : return indexes on 2 numbers in array with target sum

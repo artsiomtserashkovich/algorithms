@@ -1,0 +1,228 @@
+﻿https://leetcode.com/problems/valid-anagram/
+https://leetcode.com/problems/find-all-anagrams-in-a-string/
+
+Input: 
+	1) string s
+  2) string p
+  
+Result: true if p is anagram of s
+[a-z]
+26
+len(s) == len(p)
+
+ABC => CBA
+
+s = AAABC p = BBABC => false
+
+s: AAABC p: ABC -> false
+
+s: BAC p: ABC -> true
+
+func isAnagram(s, p string, mp) bool { // O(2len(s)+26) => O(n)
+	if len(s) != len(p) {
+  	return false
+  }
+	mp := make([26]int)
+  
+  for _, v := range s {
+  	mp[r]++
+  }
+  
+  for _, v := p {
+  	mp[r]--
+    
+    if mp[r] < 0 {
+    	return false
+    }
+  }
+  
+  for _, cnt := mp {
+  	if cnt != 0 {
+    	return false
+    }
+  }
+
+	return true
+}
+
+
+s: DACB p: ABC -> true
+s: AAABC p: ABC -> true
+
+s: ABYCA p: ABC -> false
+
+func isAnagram2(s, p string) bool {  // O(len(s) - len(p) * len(s)) => O(n^2)
+	mp := make([26]int)
+  
+  for i := 0; i < len(s) - len(p); i++ {
+  	subs := s[i:len(p)]
+    if isAnagram(subs, p) {
+    	reutrn true
+    }
+  }
+
+	return false
+}
+
+
+func isAnagram2(s, p string) bool {  // O(len(s) - len(p) * len(s)) => O(n^2)
+	
+  mp := make([26]int)
+  sliceLen := len(p)
+  if sliceLen <= 0 {
+  	return flse
+  }
+  
+  for i := 0; i < len(s) - len(p); i++ {
+  	subs := s[i:len(p)]
+    sliceEnd := sliceLen + i 
+    mp[s[i]]
+	   if isAnagram(subs, p) {
+    	
+    	reutrn true
+    }
+  }
+
+	return false
+}
+
+
+
+
+
+func isAnagram2(s, p string) bool {  // O(len(s) - len(p) * len(s)) => O(n^2)
+	
+  mp := make([26]int)
+  for _, v := range s {
+  	mp[r]++
+  }
+  
+  int windowStart = 0;
+  int windowsEnd = 0;
+  int anagramLength = p.Length;
+  
+  while(windowsEnd < s.Length)
+  {
+  	if(mp[s[windowsEnd]] >= 0)
+    {
+    	anagramLength --;
+    }
+    windowsEnd ++;
+    mp[s[windowsEnd]] --;
+    
+    
+    if(anagramLength == 0)
+    {
+    	return true;
+    }
+    
+    
+    if(windowsEnd - windowStart = p.Length)
+    {
+    	 mp[s[windowStart]] ++;
+    }
+  }
+
+	return false
+}
+
+=======================================================
+https://leetcode.com/problems/spiral-matrix-ii/
+
+n => 2
+
+1   2
+
+4   3
+
+
+n => 3
+
+[1, 2, 3] direction0offset -> 1
+[8, 9, 4]
+[7, 6, 5]
+
+
+
+[1, 2, 3] direction0offset -> 1
+[8, 9, 4]
+[7, 6, 5]
+
+direction0Offset = 1;
+direction1Offset = 1;
+direction2Offset = 1;
+direction3Offset = 1;
+
+direction
+
+int[][] CalculateMatrix(int n)
+{
+	if(n <= 0)
+  {
+ 			return null; 	
+  }
+  
+  var matrix = new int[n, n];
+  var fillIndex = 1;
+  
+  var direction = 0;
+  
+  direction0Offset = 0;
+  direction1Offset = 0;
+  direction2Offset = 0;
+  direction3Offset = 0;
+  
+  while(fillIndex <= Math.Pow(n))
+  {
+  	if(direction == 0)
+    {
+    	// 1) index = 0 .. n-1
+      // [0, index] => [1, 2, 3]
+      
+      
+      // 2) 1 .. 2 -> 1
+      // [1, 1]
+    	for(int index = direction3offset; index < n - direction1offset; index++)
+      	matrix[direction0offset, index] = fillIndex++;
+        
+    	direction0Offset++;
+      direction ++;
+    }
+    if(direction == 1)
+    {
+    // 1) index 1 .. n-1
+    // matrix[index, 2]
+    	for(int index = direction0offset; index < n - direction2offset; index++)
+      	matrix[index, n - direction1Offset - 1] = fillIndex++;
+    
+    	direction1Offset++;
+      direction ++;
+    }
+    if(direction == 2)
+    {
+      // 1) index n - 2 .. 0 => 1
+      // matrix[2, {1, 0}]
+    	for(int index = n - direction1Offset - 1; index >= dicrection3offset; index--)
+      	matrix[n - direction2offset - 1, index] = fillIndex++;
+      
+    	direction2Offset++;
+      direction ++;
+    }
+    if(direction == 3)
+    {
+      // 1) index n - 2 .. 1 => 1
+      // matrix[index, 0]
+    	for(int index = n - direction2offset - 1; index > direction0offset; index--)
+      	matrix[index, direction3Offset] = fillIndex++;
+        
+      direction = 0;
+      direction3Offset ++;
+    }
+  }
+
+
+	return matrix
+}
+
+
+

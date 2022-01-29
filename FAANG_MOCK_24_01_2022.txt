@@ -1,0 +1,82 @@
+﻿https://leetcode.com/problems/find-all-anagrams-in-a-string/
+
+s = ‘abcax’ -> n
+p = ‘abc’ -> m
+output: [0, 1]
+
+‘abc’ -> ‘acb’, ‘abc’, ‘bac’, ‘bca’, ‘cab’, ‘cba’
+
+s = “bacqbbac”
+p = “abc” : {‘a’: 1, ‘b’: 1, ‘c’: 1}
+
+p - not unique (duplicates)	
+
+output = [0,5] 
+
+int[] FindStartIndexes()
+{
+    var result = new int[];
+
+    for(int startIndex in range(0, s.Length - p.Length))
+    {
+        var hashMap = hashmap<char, int>();
+        for(var letter in p)
+        {
+            // assume that there is already 0
+            hashMap[letter] ++;
+        }
+
+        var currentIterateStartIndex = startIndex;
+
+        while(hash.forAll(kv => kv.value > 0) || currentIterateStartIndex - startIndex >= p.Length )
+        {
+            var letter = s[currentIterateStartIndex ];
+            var leftMatchings = hasMap[letter];
+        
+            if(leftMatching < 0)
+            {
+            // exit from loop;
+            } 
+        }
+
+        if(copyarray.Lenght == 0)
+        {
+            result.Add(startIndex); 
+        }
+   }
+
+}
+
+O(n * m) => 
+https://leetcode.com/problems/validate-binary-search-tree/
+
+Input: root of binary search tree
+
+Task: validate if it is valid BST
+
+  3 // -inf, inf
+/    \
+1   5 // -inf, 3; // 3, inf
+/\
+0 4 // -inf, 1; 1, 3
+
+class Node:
+	def __init__(self):
+		self.val = 0
+		self.left = None
+		self.right = None
+
+def check_bst(root, minval=float(‘-inf’), maxval=float(‘inf’)):
+    if root.val <= minval or root.val > maxval:
+        return False
+    left_valid, right_valid = True, True
+    if root.left:
+        left_valid = check_bst(root.left, minval, root.val) # False
+        if not left_valid:
+            return False
+    if root.right:
+        right_valid = check_bst(root.right, root.val, maxval)
+        if not right_valid:
+            return False
+    return True
+	
