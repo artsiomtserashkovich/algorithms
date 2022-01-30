@@ -1,0 +1,194 @@
+https://leetcode.com/problems/check-completeness-of-a-binary-tree/
+Given the root of a binary tree, determine if it is a complete binary tree.
+In a complete binary tree, every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.
+          [0]
+	    /       \
+      [1]       [2]
+     /  \      /
+  [3]    [4] [5]
+
+
+=============
+
+          [0]
+	   /       \
+      [1]       [2]
+     /  \          \ 
+  [3]    [4]        [5]
+
+
+
+0: 0 -> [1, 2]
+1: 1 -> [2, 3, 4]
+2: 2 -> [3, 4, null, 5]
+
+====================
+
+
+           [0]
+	    /       \
+      [1]       [2]
+	     \          
+          [4]        
+
+
+(bool IsChildValid, bool IsChildLastLevel) DFS(TreeNode root)
+{
+	if()
+}
+
+int? levelOfNode with 
+
+queue => [0, 1, 2, 4]
+
+
+0: 0 -> diff: [1,2]
+1: 1 -> diff: [4] -> 
+2: 2 -> diff: []
+
+0: 0 -> [1,2]
+1: 1 -> [2, null, 4] -> 
+	queue.Contains(null) ? return false : continue
+
+
+
+
+
+    [0]
+	/       \
+[1]       [2]
+	   /  \      /
+  [3]    [4] [5]
+
+=============
+
+0: 0 -> [1, 2]
+1: 1 -> [2, 3, 4]
+2: 2 -> [3, 4, 5, null]
+3: 3 -> [4, 5, null, null, null]
+4: 4 -> [5, null, null, null, null, null]
+5: 5 -> [null, null, null, null, null, null, null]
+
+=============
+
+bool IsComplete(TreeNode root)
+{
+	var queue = new Queue<TreeNode>();
+	queue.Enqueue(root);
+
+	while(queue.Length != 0 && !IsNulls(queue))
+	{
+		var iterateNode = queue.Dequeue();
+		queue.Enqueue(iteratedNode.Left);
+		queue.Enqueue(iteratedNode.Right);	
+	
+		if(IsNullInMiddle(queue))
+		{
+			return false;
+		}
+	}	
+ 
+	return true;
+}
+
+private bool IsNulls(Queue<TreeNode> queue)
+{
+	for(int i = 0; i < queue.Length; i++)
+	{
+		if(queue[i] != null)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+// Check if null between 2 not nulls node . E.g  [2, null, 4] -> true
+private bool IsNullInMiddle(Queue<TreeNode> queue)
+{
+	for(int i = 0; i < queue.Length - 2; i++)
+	{
+		if(queue[i] == null && queue[i + 1] != null)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+TimeComplexity => O(N * N * N);
+Space => O(N)
+https://leetcode.com/problems/max-area-of-island/
+
+Input: matrix MxN that filled [0, 1]
+
+An island is a group of 1 connected 4-directionally (horizontal or vertical.) 
+You may assume all four edges of the grid are surrounded by water.
+
+Return: max area of single? island
+
+
+
+[0,0,1,0,0,0,0,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,1,1,0,0,0],
+[0,1,1,0,1,0,0,0,0,0,0,0,0],
+[0,1,0,0,1,1,0,0,1,0,1,0,0],
+[0,1,0,0,1,1,0,0,1,1,1,0,0],
+[0,0,0,0,0,0,0,0,0,0,1,0,0],
+[0,0,0,0,0,0,0,1,1,1,0,0,0],
+[0,0,0,0,0,0,0,1,1,0,0,0,0]
+
+areas
+[0,0,1,0,0,0,0,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,1,1,0,0,0],
+[0,1,1,0,1,0,0,0,0,0,0,0,0],
+[0,1,0,0,1,1,0,0,1,0,1,0,0],
+[0,1,0,0,1,1,0,0,2,3,5,0,0],
+[0,0,0,0,0,0,0,0,0,0,9,0,0],
+[0,0,0,0,0,0,0,1,1,1,0,0,0],
+[0,0,0,0,0,0,0,1,1,0,0,0,0]
+
+
+
+dp [][] n^2 
+val == 0 => 0
+val == 1 => max(reachableCell) + 1;
+
+n^2 max
+
+
+iterate through each element n^2
+if (value == 1) run dfs (4 directions) => maxArea
+
+boolean[][] visitCells;
+
+int maxAreaIsland(int[][] map) {
+	int n = map.length;
+	int m = map[0].length;
+	visitCells = new int[n][m];
+	int maxArea = 0;
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
+			if (map[i][j] == 1 ) {
+					maxArea = Math.max(maxArea, dfs(map, i, j));
+			}
+	return maxArea;
+}
+
+
+int dfs(int[][] map, int i, int j) {
+	if (map[i][j] == 0 || visitCells[i][j] == 1) return 0;
+	visitCells[i][j] = 1;
+	int result = 1;
+	result += dfs(map, i - 1, j);	
+	result += dfs(map, i, j - 1);
+	result += dfs(map, i, j + 1);
+	result += dfs(map, i + 1, j); 
+	return result;
+}
+
+Time complexity (n^2 * n^2)
+Space complexity (n ^ 2)
