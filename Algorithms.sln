@@ -22,6 +22,7 @@ ProjectSection(SolutionItems) = preProject
 	src\Algorithms.Mocks\FAANG_MOCK_28_01_2022.txt = src\Algorithms.Mocks\FAANG_MOCK_28_01_2022.txt
 	src\Algorithms.Mocks\FAANG_MOCK_29_01_2022.txt = src\Algorithms.Mocks\FAANG_MOCK_29_01_2022.txt
 	src\Algorithms.Mocks\FAANG_MOCK_30_01_2022.txt = src\Algorithms.Mocks\FAANG_MOCK_30_01_2022.txt
+	src\Algorithms.Mocks\FAANG_MOCK_31_01_2022.txt = src\Algorithms.Mocks\FAANG_MOCK_31_01_2022.txt
 EndProjectSection
 EndProject
 Global

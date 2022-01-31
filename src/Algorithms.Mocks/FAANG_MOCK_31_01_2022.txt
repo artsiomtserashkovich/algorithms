@@ -1,0 +1,175 @@
+﻿https://leetcode.com/problems/check-completeness-of-a-binary-tree/
+Given the root of a binary tree, determine if it is a complete binary tree.
+
+Input: TreeNode root
+
+In a complete binary tree, every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. 
+It can have between 1 and 2h nodes inclusive at the last level h.
+ 
+ 					 [0]
+	      /       \
+      [1]       [2]
+     /  \      /
+  [3]    [4] [5]
+  
+  
+         [0]
+	      /       
+      [1]    
+     /  \      
+  [3]    [4]   // heigh = 2  
+ 
+ 
+ 					 [0]
+	      /       \
+      [1]       [2]
+                /         
+            [5]
+ 
+ 
+    a
+  b   c
+   f e
+
+ 
+    a
+      c
+     e
+     
+ If node has no left child but has right => false
+ 
+ type TreeNode struct {
+ 	val string
+  left *TreeNode
+  right *TreeNode 	
+ }
+ 
+ func isComplete(TreeNode node) bool { // 0
+ 	cnt := 0
+  
+  
+  return isComplete(node.left) && isComplete(node.right)
+ }
+ 
+ 
+ https://leetcode.com/problems/subarray-sum-equals-k/solution/
+
+ Given an array of integers nums and an integer k, return the total number of continuous subarrays whose sum equals to k.
+ 
+ nums[] -> numbers
+ int k -> target sum
+ 
+ Return: 3 
+ 
+ 
+ 
+ [1, 5, 6, 3, 1, 5, 8] k: 9 -> [3, 1, 5]; [6, 3] -> return 2;
+ 
+ [0], ... [6] 
+ [0, 1], ... [6] 
+ 
+ 
+// [0]
+// [0, 1]
+// [0, 1, 2]
+// [0, 1, 2, 3]
+// [1]
+// [1, 2] 
+// [1, 2, 3]
+// [2]
+// [2, 3]
+// [3]
+ 
+ int GetPairs(int[] nums, int target)
+ {
+ 		List<List<int>> pairs = new List<int>;
+    
+    Backtracking(pairs, nums, target, new Stack<int>, 0)
+ 
+ 		return pairs.Count;
+ }
+ 
+ void Backtracking(int[] nums, int targetSum, Stack<int> indexes, int startIndex)
+ {
+ 		int foundPairs = 0;
+ 		if(GetSumForIndexes(indexes, nums) == targetSum)
+    {
+    		foundPairs ++;
+    }
+    
+    if(indexes < nums.Length)
+    {
+    		return 0;
+    }
+    
+    for(int index = startIndex; index < nums.Length; index ++)
+    {
+    		stack.Push(index);
+        foundPairs += Backtracking(acc, nums, target, new Stack<int>, index);
+        stack.Pop();
+    }
+ 		
+    
+ }
+ 
+ { value_subarray } -> { count_subarray }
+ 
+ 
+ Time : O(n!)
+ 
+ [1, 2]
+ 
+ [1]
+ [2]
+ [1, 2]
+ 
+ 2 -> 2
+ 3 -> 
+ 4 -> 10
+ 
+// [0]
+// [0, 1]
+// [0, 1, 2]
+// [0, 1, 2, 3]
+// [1]
+// [1, 2] 
+// [1, 2, 3]
+// [2]
+// [2, 3]
+// [3]
+ 
+int GetPairsV2(int[] nums, int target)
+{
+  return Backtracking(nums, target, new Stack<int>, 0)
+}
+ 
+int BacktrackingV2(int[] nums, int targetSum, Stack<int> indexes, int startIndex)
+{
+  int foundPairs = 0;
+  if(GetSumForIndexes(indexes, nums) == targetSum)
+  {
+      foundPairs ++;
+  }
+
+  for(int index = startIndex; index < nums.Length; index ++)
+  {
+      stack.Push(index);
+      foundPairs += Backtracking(nums, target, new Stack<int>, index);
+      stack.Pop();
+  }
+  
+	return foundPairs;
+}
+ 
+ int GetSumForIndexes(Stack<int> stack, int[] nums)
+ {
+ 
+ 		int sum = 0;
+		foreach(var index in stack)
+    {
+    	sum += nums[index];
+    };
+    return sum;
+ }
+ 
+ 
