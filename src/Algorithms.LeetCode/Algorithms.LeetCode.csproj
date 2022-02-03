@@ -5,8 +5,4 @@
         <RootNamespace>Algorithms.LeetCode</RootNamespace>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Numbers" />
-    </ItemGroup>
-
 </Project>

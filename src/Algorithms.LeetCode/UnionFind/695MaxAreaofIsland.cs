@@ -1,4 +1,5 @@
 ﻿using System;
+using Algorithms.LeetCode.UnionFind.Sets;
 
 namespace Algorithms.LeetCode.UnionFind
 {
@@ -56,6 +57,70 @@ namespace Algorithms.LeetCode.UnionFind
             }
 
             return area;
+        }
+        
+        
+        public int GetMaxAreaOfIslandV2(int[][] grid)
+        {
+            var maxArea = 0;
+            var unionSet = new WQUMatrixSet(grid.Length, grid[0].Length);
+            
+            for (int row = 0; row < grid.Length; row++)
+            {
+                for (int col = 0; col < grid[0].Length; col ++)
+                {
+                    if (grid[row][col] == 1)
+                    {
+                        if (
+                            IsValid(row - 1, col, grid) &&
+                            grid[row - 1][col] == 1 &&
+                            !unionSet.IsConnected((row, col), (row - 1, col)))
+                        {
+                            unionSet.Union((row, col), (row - 1, col));
+                        }
+                        if (
+                            IsValid(row, col - 1, grid) &&
+                            grid[row][col - 1] == 1 &&
+                            !unionSet.IsConnected((row, col), (row, col - 1)))
+                        {
+                            unionSet.Union((row, col), (row, col - 1));
+                        }
+                        if (
+                            IsValid(row + 1, col, grid) &&
+                            grid[row + 1][col] == 1 &&
+                            !unionSet.IsConnected((row, col), (row + 1, col)))
+                        {
+                            unionSet.Union((row, col), (row + 1, col));
+                        }
+                        if (
+                            IsValid(row, col + 1, grid) &&
+                            grid[row][col + 1] == 1 &&
+                            !unionSet.IsConnected((row, col), (row, col + 1)))
+                        {
+                            unionSet.Union((row, col), (row, col + 1));
+                        }
+
+                        maxArea = Math.Max(maxArea, unionSet.GetConnectedCount(row, col));
+                    }
+                }
+            }
+
+
+            return maxArea;
+        }
+
+        private static bool IsValid(int row, int col, int[][] grid)
+        {
+            if (row < 0)
+                return false;
+            if (col < 0)
+                return false;
+            if (row >= grid.Length)
+                return false;
+            if (col >= grid[0].Length)
+                return false;
+
+            return true;
         }
     }
 }
