@@ -47,4 +47,28 @@ public class DailyTemperatures
         
         return result;
     }
+    
+    public int[] DailyTemperaturesV1(int[] temperatures) 
+    {
+        var result = new int[temperatures.Length];
+        
+        for(int index = 0; index < temperatures.Length; index++)
+        {
+            int distance = 0;
+            for(
+                int next = index + 1; 
+                next < temperatures.Length && distance == 0; 
+                next++)
+            {
+                if(temperatures[next] > temperatures[index])
+                {
+                    distance = next - index;
+                }   
+            }
+            
+            result[index] = distance;
+        }
+        
+        return result;
+    }
 }
